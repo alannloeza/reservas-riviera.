@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explora Riviera Maya</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="salto" href="#catalogo">Saltar al catálogo</a>
+  <header class="encabezado">
+    <h1>Explora Riviera Maya</h1>
+    <p>Busca experiencias y calcula tu reservación.</p>
+  </header>
+
+  <main class="contenedor">
+    <h2>Experiencias disponibles</h2>
+    <section class="controles" aria-label="Controles del catálogo">
+      <div class="campo">
+        <label for="buscador">Buscar experiencia</label>
+        <input id="buscador" type="search" placeholder="Ejemplo: kayak">
+      </div>
+      <div class="campo">
+        <label for="ordenPrecio">Ordenar por</label>
+        <select id="ordenPrecio">
+          <option value="normal">Orden original</option>
+          <option value="ascendente">Menor precio</option>
+          <option value="descendente">Mayor precio</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="precioMaximo">Precio máximo (MXN)</label>
+        <input id="precioMaximo" type="number" min="0" step="any" placeholder="Sin límite" aria-describedby="mensajeFiltro">
+      </div>
+    </section>
+    <section class="filtros" aria-label="Filtrar por categoría">
+      <button class="activo" data-categoria="todas" type="button" aria-pressed="true">Todas</button>
+      <button data-categoria="naturaleza" type="button" aria-pressed="false">Naturaleza</button>
+      <button data-categoria="cultura" type="button" aria-pressed="false">Cultura</button>
+      <button data-categoria="aventura" type="button" aria-pressed="false">Aventura</button>
+      <button data-categoria="gastronomia" type="button" aria-pressed="false">Gastronomía</button>
+      <button data-categoria="bienestar" type="button" aria-pressed="false">Bienestar</button>
+    </section>
+    <p id="mensajeFiltro" class="mensaje error" role="status" hidden></p>
+    <div class="estado-fila">
+      <p id="contador" role="status">Cargando experiencias...</p>
+      <button id="limpiarFiltros" class="boton-secundario" type="button">Limpiar filtros</button>
+    </div>
+    <section id="catalogo" class="catalogo" aria-label="Catálogo de experiencias" aria-busy="true"></section>
+
+    <section class="resumen" aria-labelledby="tituloReserva">
+      <h2 id="tituloReserva">Mi reservación</h2>
+      <div id="listaReservas"></div>
+      <p id="mensajeReserva" class="mensaje" role="status" aria-live="polite" hidden></p>
+      <div class="totales" aria-live="polite" aria-atomic="true">
+        <p>Personas reservadas: <strong id="totalPersonas">0</strong></p>
+        <p class="total">Total: <strong id="total">$0 MXN</strong></p>
+      </div>
+      <button id="vaciarReservacion" class="boton-peligro" type="button" disabled>Vaciar reservación</button>
+      <p class="nota">La selección es temporal. Al recargar la página se borran las reservas.</p>
+    </section>
+  </main>
+
+  <footer><p>Proyecto académico de Frontend · Precios y experiencias de demostración.</p></footer>
+  <dialog id="dialogoVaciar" aria-labelledby="tituloDialogo" aria-describedby="textoDialogo">
+    <h2 id="tituloDialogo">¿Vaciar reservación?</h2>
+    <p id="textoDialogo">Se eliminarán todas las experiencias seleccionadas.</p>
+    <form method="dialog">
+      <button value="cancelar" class="boton-secundario" autofocus>Cancelar</button>
+      <button value="confirmar" class="boton-peligro">Sí, vaciar</button>
+    </form>
+  </dialog>
+</body>
+</html>
